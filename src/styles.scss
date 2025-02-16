@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; width: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+    --mat-form-field-container-height: 40px;
+    --mat-form-field-container-vertical-padding: 8px;
+
+    --mat-sys-body-large-size: 14px;
+}
