@@ -1,0 +1,62 @@
+.sign-up-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+
+    .sign-up-form {
+        flex: 2;
+        align-self: center;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .form-container {
+                width: 55%;
+                text-align: center;
+
+                h2 {
+                    margin-bottom: 23px;
+                }
+    
+                .mat-mdc-form-field {
+                    width: 100%;
+                    font-size: 14px;
+                    margin-bottom: 7px;
+                }
+
+                .double-fields {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+
+                    .mat-mdc-form-field {
+                        width: 48%;
+                    }
+                }
+
+                .signup-button {
+                    width: 100%;
+                    border-radius: 5px;
+                    margin-bottom: 10px;
+                }
+
+                .signin-button {
+                    width: 100%;
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
+
+    .auth-banner {
+        background-color: var(--login-register-bg);
+        background-image: url(./../../../../../assets/images/fitness-banner.webp);
+        background-size: cover;
+        flex: 3;
+        border-radius: 20px;
+        margin: 1%;
+    }
+}
