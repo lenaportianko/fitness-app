@@ -1,1 +1,51 @@
-<p>sign-in works!</p>
+<div class="sign-in-container">
+    <div class="sign-in-form">
+        <form [formGroup]="signInForm">
+            <div class="form-container">
+                <h2>Welcome back</h2>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" type="email" />
+                    <mat-error *ngIf="signInForm.controls['email'].hasError('required')">
+                        Field is required
+                    </mat-error>
+                    <mat-error *ngIf="signInForm.controls['email'].hasError('email')">
+                        Wrong email
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password" [type]="showPassword ? 'text' : 'password'" />
+                    <mat-icon matSuffix (click)="togglePasswordVisibility()">
+                        {{showPassword ? 'visibility_off' : 'visibility'}}
+                    </mat-icon>
+                    <mat-error *ngIf="signInForm.controls['password'].hasError('required')">
+                        Field is required
+                    </mat-error>
+                </mat-form-field>
+
+                <button
+                    mat-flat-button
+                    type="button"
+                    class="signin-button"
+                    (click)="signIn()"
+                >
+                    Sign In
+                </button>
+
+                <button
+                    mat-button
+                    type="button"
+                    class="signup-button"
+                    (click)="signUp()"
+                >
+                    Sign Up
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="auth-banner"></div>
+</div>
