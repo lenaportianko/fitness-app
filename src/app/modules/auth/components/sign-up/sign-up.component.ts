@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 import { CountryData } from '../../models/country-data.model';
 import { CountryService } from '../../services/country.service';
 import { CountryResponse } from '../../models/country-response.model';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-sign-up',
