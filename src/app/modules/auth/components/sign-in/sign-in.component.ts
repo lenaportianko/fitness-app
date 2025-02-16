@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from "@angular/material/button";
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -27,7 +28,14 @@ export class SignInComponent implements OnInit {
 
   public showPassword: boolean = false;
 
-  public constructor(private router: Router) {}
+  public constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {
+    if (authService.isAuthenticated()) {
+      router.navigate(['/']);
+    }
+  }
 
   public ngOnInit(): void {
     this.signInForm = new FormGroup({
@@ -46,6 +54,7 @@ export class SignInComponent implements OnInit {
       return;
     }
 
+    this.authService.login();
     this.router.navigate(['/']);
   }
 
