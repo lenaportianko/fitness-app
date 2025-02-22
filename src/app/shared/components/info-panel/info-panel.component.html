@@ -1,0 +1,36 @@
+<div class="info-panel-container">
+    <div class="info-panel-content">
+        <div class="user-info">
+            <div class="user-more-info">
+                <button mat-icon-button>
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+            </div>
+    
+            <span class="user-avatar">
+                <mat-icon>account_circle</mat-icon>
+            </span>
+
+            <p class="user-name">{{(user$ | async)?.name}}</p>
+    
+            <p class="user-other-info">{{(user$ | async)?.age}} years, {{(user$ | async)?.country}}</p>
+    
+            <div class="user-parameters-block">
+                <div class="parameter-block">
+                    <p class="parameter-name">Weight</p>
+                    <p class="parameter-value">{{(user$ | async)?.weight}} kg</p>
+                </div>
+    
+                <div class="parameter-block">
+                    <p class="parameter-name">Height</p>
+                    <p class="parameter-value">{{(user$ | async)?.height}} cm</p>
+                </div>
+    
+                <div class="parameter-block">
+                    <p class="parameter-name">Goal</p>
+                    <p class="parameter-value">{{(user$ | async)?.weightGoal}} kg</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

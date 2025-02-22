@@ -1,0 +1,86 @@
+.info-panel-container {
+    height: 100%;
+    border: 1px solid #ecf3f8;
+    box-sizing: border-box;
+    border-radius: 24px;
+
+    .info-panel-content {
+        padding: 24px;
+
+        .user-info {
+            background: #fafafc;
+            border: 1px solid #f1f1f8;
+            box-shadow: 0 4px 12px rgba(103, 173, 255, .08);
+            border-radius: 20px;
+            text-align: center;
+            padding: 13px 5px;
+
+            .user-more-info {
+                display: block;
+                text-align: end;
+    
+                button {
+                    border: none;
+                    background-color: transparent;
+
+                    :hover {
+                        cursor: pointer;
+                    }
+    
+                    .mat-icon {
+                        height: 20px;
+                        width: 20px;
+                        font-size: 20px;
+                        color: #a7aeb3;
+                    }
+                }
+            }
+    
+            .user-avatar {
+                display: block;
+                margin-bottom: 5px;
+    
+                .mat-icon {
+                    height: 80px;
+                    width: 80px;
+                    font-size: 80px;
+                    color: #d3d3d3;
+                }
+            }
+    
+            .user-name {
+                font-size: 18px;
+                font-weight: 500;
+            }
+    
+            .user-other-info {
+                font-size: 11px;
+                font-weight: 500;
+                color: #56648a;
+            }
+    
+            .user-parameters-block {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 35px 0 20px;
+    
+                .parameter-block {
+                    width: 32%;
+    
+                    .parameter-name {
+                        font-size: 10px;
+                        font-weight: 500;
+                        color: var(--mat-sys-primary);
+                        margin: 0 0 3px;
+                    }
+    
+                    .parameter-value {
+                        font-size: 14px;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+}
