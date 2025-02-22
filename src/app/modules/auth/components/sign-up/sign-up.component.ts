@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,6 +12,7 @@ import { CountryData } from '../../models/country-data.model';
 import { CountryService } from '../../services/country.service';
 import { CountryResponse } from '../../models/country-response.model';
 import { AuthService } from '../../../../core/services/auth.service';
+import { map, Observable, startWith } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up',
@@ -18,6 +20,7 @@ import { AuthService } from '../../../../core/services/auth.service';
   styleUrl: './sign-up.component.scss',
   imports: [
     CommonModule,
+    MatAutocompleteModule,
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
@@ -31,7 +34,8 @@ export class SignUpComponent implements OnInit {
 
   public signUpForm: FormGroup = new FormGroup({});
 
-  public countries: CountryData[] = [];
+  public countries: string[] = [];
+  public filteredCountryOptions: Observable<string[]> = new Observable<string[]>();
 
   public showPassword: boolean = false;
 
@@ -55,9 +59,26 @@ export class SignUpComponent implements OnInit {
 
     this.countryService.getCountries().subscribe((response: CountryResponse) => {
       if (!response.error) {
-        this.countries = response.data;
+        this.countries = response.data.map((countryData: CountryData) => countryData.name);
       }
     });
+
+    this.filteredCountryOptions = this.signUpForm.controls['country'].valueChanges.pipe(
+      startWith(''),
+      map((value: string) => this.filter(value || ''))
+    );
+  }
+  
+  private filter(value: string): string[] {
+    const filteredValues: string [] = this.countries.filter((country: string) => {
+      return country.toLowerCase().includes(value.toLowerCase());
+    });
+    
+    if (!filteredValues.length) {
+      this.signUpForm.controls['country'].setErrors({ 'wrong-value': true });
+    }
+
+    return filteredValues;
   }
 
   public togglePasswordVisibility(): void {

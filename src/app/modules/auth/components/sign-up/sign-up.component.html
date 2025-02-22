@@ -27,14 +27,18 @@
                     <mat-label>Country</mat-label>
                     <input matInput *ngIf="!countries.length; else selectField" formControlName="country" type="text" />
                     <ng-template #selectField>
-                        <mat-select formControlName="country">
-                            <mat-option *ngFor="let country of countries" [value]="country.name">
-                                {{country.name}}
-                            </mat-option>
-                        </mat-select>
+                        <input matInput formControlName="country" type="text" [matAutocomplete]="auto">
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                            @for (option of filteredCountryOptions | async; track option) {
+                              <mat-option [value]="option">{{option}}</mat-option>
+                            }
+                        </mat-autocomplete>
                     </ng-template>
                     <mat-error *ngIf="signUpForm.controls['country'].hasError('required')">
                         Field is required
+                    </mat-error>
+                    <mat-error *ngIf="signUpForm.controls['country'].hasError('wrong-value')">
+                        Wrong value
                     </mat-error>
                 </mat-form-field>
 
