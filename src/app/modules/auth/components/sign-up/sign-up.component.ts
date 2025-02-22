@@ -91,7 +91,7 @@ export class SignUpComponent implements OnInit {
       return;
     }
 
-    this.authService.login();
+    this.authService.register(this.signUpForm.value);
     this.router.navigate(['/']);
   }
 

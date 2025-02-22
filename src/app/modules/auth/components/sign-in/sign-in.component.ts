@@ -54,7 +54,7 @@ export class SignInComponent implements OnInit {
       return;
     }
 
-    this.authService.login();
+    this.authService.login(this.signInForm.value);
     this.router.navigate(['/']);
   }
 
