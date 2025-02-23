@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { Store } from '@ngrx/store';
 import { User } from '../../../core/models/user.model';
-import { Observable } from 'rxjs';
+import { UserService } from '../../../core/services/user.service';
 
 @Component({
   selector: 'app-info-panel',
@@ -14,13 +13,22 @@ import { Observable } from 'rxjs';
     MatIconModule
   ]
 })
-export class InfoPanelComponent {
+export class InfoPanelComponent implements OnInit {
 
-  public user$: Observable<User>;
+  public user: User = {
+    name: '',
+    email: '',
+    country: ''
+  };
 
   public constructor(
-    store: Store<{ user: User }>
-  ) {
-    this.user$ = store.select('user');
+    private userService: UserService
+  ) { }
+
+  public ngOnInit(): void {
+    this.userService.getUser().subscribe((userData: User) => {
+      this.user = userData;
+    });
   }
+
 }

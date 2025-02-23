@@ -11,24 +11,24 @@
                 <mat-icon>account_circle</mat-icon>
             </span>
 
-            <p class="user-name">{{(user$ | async)?.name}}</p>
+            <p class="user-name">{{user.name}}</p>
     
-            <p class="user-other-info">{{(user$ | async)?.age}} years, {{(user$ | async)?.country}}</p>
+            <p class="user-other-info">{{user.age || "-"}} years, {{user.country}}</p>
     
             <div class="user-parameters-block">
                 <div class="parameter-block">
                     <p class="parameter-name">Weight</p>
-                    <p class="parameter-value">{{(user$ | async)?.weight}} kg</p>
+                    <p class="parameter-value">{{user.weight || "-"}} kg</p>
                 </div>
     
                 <div class="parameter-block">
                     <p class="parameter-name">Height</p>
-                    <p class="parameter-value">{{(user$ | async)?.height}} cm</p>
+                    <p class="parameter-value">{{user.height || "-"}} cm</p>
                 </div>
     
                 <div class="parameter-block">
                     <p class="parameter-name">Goal</p>
-                    <p class="parameter-value">{{(user$ | async)?.weightGoal}} kg</p>
+                    <p class="parameter-value">{{user.weightGoal || "-"}} kg</p>
                 </div>
             </div>
         </div>

@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { reset, set } from '../../shared/store/user.action';
-import { user } from '../constants/user';
 import { User } from '../models/user.model';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private store: Store) { }
+  constructor(private userService: UserService) { }
 
   public getAuthValue(): string | null {
     return localStorage.getItem('isAuthenticated')
@@ -34,17 +32,17 @@ export class AuthService {
   }
 
   public login(userData: Partial<User>): void {
-    this.store.dispatch(set({ data: { ...user, ...userData } }));
+    this.userService.updateUser(userData);
     this.setAuthValue(JSON.stringify(true));
   }
 
   public register(user: User): void {
-    this.store.dispatch(set({ data: user}));
+    this.userService.updateUser(user);
     this.setAuthValue(JSON.stringify(true));
   }
 
   public logout(): void {
     this.removeAuthValue();
-    this.store.dispatch(reset());
+    this.userService.resetUser();
   }
 }
