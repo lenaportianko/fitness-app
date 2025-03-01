@@ -1,0 +1,136 @@
+<mat-dialog-content>
+    <form [formGroup]="userForm">
+        <div class="form-container">
+            <div class="general-info-block">
+                <div class="user-avatar-block">
+                    <div class="avatar-upload">
+                        <label for="fileInput">
+                            <img
+                                *ngIf="isExistAvatar(); else defaultAvatar"
+                                class="avatar-preview"
+                                [src]="userForm.controls['avatar'].value"
+                            />
+                            <ng-template #defaultAvatar>
+                                <span class="default-avatar">
+                                    <mat-icon>account_circle</mat-icon>
+                                </span>
+                            </ng-template>
+                                    
+                            <div>Upload avatar</div>
+                        </label>
+    
+                        <input
+                            type="file"
+                            id="fileInput"
+                            class="select-user-avatar"
+                            [accept]="allowedFiles" 
+                            (change)="onChangeFileInput($event.target)"
+                        />
+                    </div>
+
+                    <a
+                        *ngIf="isExistAvatar()"
+                        class="remove-avatar-button"
+                        (click)="removeAvatar()"
+                    >
+                        Remove
+                    </a>
+                </div>
+
+                <div class="theme-switch-block">
+                    Light
+                    <mat-slide-toggle
+                        #darkModeSwitch
+                        [checked]="false"
+                        disabled
+                    ></mat-slide-toggle>
+                    Dark
+                </div>
+            </div>
+
+            <div class="user-info-block">
+                <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name" type="text" />
+                    <mat-error *ngIf="userForm.controls['name'].hasError('required')">
+                        Field is required
+                    </mat-error>
+                </mat-form-field>
+    
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" type="email" />
+                    <mat-error *ngIf="userForm.controls['email'].hasError('required')">
+                        Field is required
+                    </mat-error>
+                    <mat-error *ngIf="userForm.controls['email'].hasError('email')">
+                        Wrong email
+                    </mat-error>
+                </mat-form-field>
+    
+                <mat-form-field appearance="outline">
+                    <mat-label>Country</mat-label>
+                    <input matInput *ngIf="!countries.length; else selectField" formControlName="country" type="text" />
+                    <ng-template #selectField>
+                        <input matInput formControlName="country" type="text" [matAutocomplete]="auto">
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                            @for (option of filteredCountryOptions | async; track option) {
+                                <mat-option [value]="option">{{option}}</mat-option>
+                            }
+                        </mat-autocomplete>
+                    </ng-template>
+                    <mat-error *ngIf="userForm.controls['country'].hasError('required')">
+                        Field is required
+                    </mat-error>
+                    <mat-error *ngIf="userForm.controls['country'].hasError('wrong-value')">
+                        Wrong value
+                    </mat-error>
+                </mat-form-field>
+    
+                <div class="double-fields">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Age</mat-label>
+                        <input matInput formControlName="age" type="number" />
+                        <mat-error *ngIf="userForm.controls['age'].hasError('min')">
+                            Wrong data
+                        </mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline">
+                        <mat-label>Height</mat-label>
+                        <input matInput formControlName="height" type="number" />
+                        <span matTextSuffix>cm</span>
+                        <mat-error *ngIf="userForm.controls['height'].hasError('min')">
+                            Wrong data
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+    
+                <div class="double-fields">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Weight</mat-label>
+                        <input matInput formControlName="weight" type="number" />
+                        <span matTextSuffix>kg</span>
+                        <mat-error *ngIf="userForm.controls['weight'].hasError('min')">
+                            Wrong data
+                        </mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline">
+                        <mat-label>Weight goal</mat-label>
+                        <input matInput formControlName="weightGoal" type="number" />
+                        <span matTextSuffix>kg</span>
+                        <mat-error *ngIf="userForm.controls['weightGoal'].hasError('min')">
+                            Wrong data
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+  
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button (click)="updateUserInfo()">Save</button>
+</mat-dialog-actions>
