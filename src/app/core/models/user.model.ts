@@ -7,4 +7,5 @@ export type User = {
     weight?: number;
     weightGoal?: number;
     password?: string;
+    avatar?: string;
 };

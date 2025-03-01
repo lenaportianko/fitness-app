@@ -8,5 +8,6 @@ export const user: User = {
     height: 179,
     weight: 83,
     weightGoal: 72,
-    password: ""
+    password: "",
+    avatar: ""
 };
