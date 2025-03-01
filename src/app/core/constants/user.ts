@@ -2,7 +2,7 @@ import { User } from "../models/user.model";
 
 export const user: User = {
     name: "John Doe",
-    email: "johndoe@jopmailcom",
+    email: "johndoe@jopmail.com",
     country: "Brazil",
     age: 30,
     height: 179,
