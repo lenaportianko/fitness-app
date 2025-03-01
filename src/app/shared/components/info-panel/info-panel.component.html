@@ -2,14 +2,21 @@
     <div class="info-panel-content">
         <div class="user-info">
             <div class="user-more-info">
-                <button mat-icon-button>
+                <button mat-icon-button (click)="openUserDetailsDialog()">
                     <mat-icon>more_vert</mat-icon>
                 </button>
             </div>
-    
-            <span class="user-avatar">
-                <mat-icon>account_circle</mat-icon>
-            </span>
+
+            <img
+                *ngIf="user.avatar; else defaultAvatar"
+                class="user-avatar"
+                [src]="user.avatar"
+            />
+            <ng-template #defaultAvatar>
+                <span class="default-avatar">
+                    <mat-icon>account_circle</mat-icon>
+                </span>
+            </ng-template>
 
             <p class="user-name">{{user.name}}</p>
     

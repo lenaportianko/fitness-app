@@ -22,10 +22,7 @@
                 button {
                     border: none;
                     background-color: transparent;
-
-                    :hover {
-                        cursor: pointer;
-                    }
+                    cursor: pointer;
     
                     .mat-icon {
                         height: 20px;
@@ -37,6 +34,14 @@
             }
     
             .user-avatar {
+                height: 80px;
+                width: 80px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-bottom: 5px;
+            }
+
+            .default-avatar {
                 display: block;
                 margin-bottom: 5px;
     
