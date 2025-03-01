@@ -1,0 +1,13 @@
+.activity-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+
+    .activity-info {
+        width: 75%;
+    }
+
+    app-info-panel {
+        width: 25%;
+    }
+}
