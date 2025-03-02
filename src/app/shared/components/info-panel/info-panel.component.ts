@@ -5,6 +5,7 @@ import { User } from '../../../core/models/user.model';
 import { UserService } from '../../../core/services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UserDetailsDialogComponent } from '../user-details-dialog/user-details-dialog.component';
+import { Overlay } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-info-panel',
@@ -25,7 +26,8 @@ export class InfoPanelComponent implements OnInit {
 
   public constructor(
     private userService: UserService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private overlay: Overlay
   ) { }
 
   public ngOnInit(): void {
@@ -36,7 +38,9 @@ export class InfoPanelComponent implements OnInit {
 
   public openUserDetailsDialog(): void {
     const dialogRef = this.dialog.open(UserDetailsDialogComponent, {
-      data: this.user
+      data: this.user,
+      disableClose: true,
+      scrollStrategy: this.overlay.scrollStrategies.noop()
     });
 
     dialogRef.afterClosed().subscribe((updatedUser: Partial<User>) => {
