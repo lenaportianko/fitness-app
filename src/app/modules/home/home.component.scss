@@ -1,0 +1,18 @@
+.home-container {
+    height: 100%;
+    width: 100%;
+
+    .home-content {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+
+        app-activity, app-nutrition {
+            width: 75%;
+        }
+
+        app-info-panel {
+            width: 25%;
+        }
+    }
+}

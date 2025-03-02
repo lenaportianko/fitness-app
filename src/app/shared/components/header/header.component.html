@@ -3,13 +3,13 @@
         <a class="logo"></a>
 
         <nav class="menu">
-            <a routerLink="/activity" routerLinkActive="active">
-                <mat-icon aria-label="Exercise">sports_soccer</mat-icon>
-                <span>Activity</span>
-            </a>
-            <a routerLink="/nutrition" routerLinkActive="active">
-                <mat-icon aria-label="Nutrition">restaurant</mat-icon>
-                <span>Nutrition</span>
+            <a
+                *ngFor="let menuItem of menuItems"
+                [ngClass]="{'active': activeTab === menuItem.name}"
+                (click)="toggleTab(menuItem.name)"
+            >
+                <mat-icon>{{menuItem.icon}}</mat-icon>
+                <span>{{menuItem.name}}</span>
             </a>
         </nav>
 

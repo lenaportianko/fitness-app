@@ -1,0 +1,12 @@
+<div class="home-container">
+    <app-header
+        [activeTab]="activeRoute"
+        (tabEvent)="updateContent($event)"
+    ></app-header>
+
+    <div class="home-content">
+        <app-activity *ngIf="activeRoute === menuItem.Activity"></app-activity>
+        <app-nutrition *ngIf="activeRoute === menuItem.Nutrition"></app-nutrition>
+        <app-info-panel></app-info-panel>
+    </div>
+</div>
