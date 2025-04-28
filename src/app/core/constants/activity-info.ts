@@ -17,7 +17,7 @@ export const activityInfo: ActivityInfo[] = [
         unitOfMeasure: 'min'
     },
     {
-        activityType: ActivityType.Exercise,
+        activityType: ActivityType.Calories,
         actualValue: 0,
         goalValue: 3000,
         unitOfMeasure: 'kcal'
