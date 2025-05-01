@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 import { UserService } from './user.service';
+import { ActivityService } from '../../modules/home/services/activity.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private activityService: ActivityService
+  ) { }
 
   public getAuthValue(): string | null {
     return localStorage.getItem('isAuthenticated')
@@ -44,5 +48,6 @@ export class AuthService {
   public logout(): void {
     this.removeAuthValue();
     this.userService.resetUser();
+    this.activityService.resetActivities();
   }
 }
