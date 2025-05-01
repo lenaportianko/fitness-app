@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ActivityService } from '../../services/activity.service';
+import { ActivityInfo } from '../../../../core/models/activity-info.model';
+import { ActivityType } from '../../../../core/models/activity-type.enum';
 
 @Component({
   selector: 'app-activity',
@@ -11,49 +14,25 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatProgressSpinnerModule
   ]
 })
-export class ActivityComponent {
+export class ActivityComponent implements OnInit {
 
-  public activityInfoes = [
-    {
-      activityType: 'Sleep',
-      activityActual: this.getRandomValue(0, 10),
-      activityGoal: 8,
-      unitOfMeasure: 'h',
-      date: new Date()
-    },
-    {
-      activityType: 'Exercise',
-      activityActual: this.getRandomValue(0, 120),
-      activityGoal: 60,
-      unitOfMeasure: 'min',
-      date: new Date()
-    },
-    {
-      activityType: 'Calories',
-      activityActual: this.getRandomValue(0, 3000),
-      activityGoal: 3000,
-      unitOfMeasure: 'kcal',
-      date: new Date()
-    },
-    {
-      activityType: 'Steps',
-      activityActual: this.getRandomValue(0, 30000),
-      activityGoal: 6000,
-      unitOfMeasure: 'steps',
-      date: new Date()
-    }
-  ];
+  public activityData: ActivityInfo[] = [];
+  public activityTypes = ActivityType;
 
-  private getRandomValue(minValue: number, maxValue: number): number {
-    return Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue;
+  constructor(private activityService: ActivityService) {}
+
+  public ngOnInit(): void {
+    this.activityService.getActivities().subscribe((activities: Record<string, ActivityInfo[]>) => {
+      this.activityData = activities[new Date().toLocaleDateString()];
+    });
   }
 
-  public getActivityClass(activityType: string): string {
-    return activityType.toLowerCase();
+  public getActivityClass(activityType: ActivityType): string {
+    return ActivityType[activityType].toLowerCase();
   }
 
-  public getProgressSpinnerValue(value: { activityActual: number; activityGoal: number; }): number {
-    return value.activityActual * 100 / value.activityGoal;
+  public getProgressSpinnerValue(value: ActivityInfo): number {
+    return value.actualValue * 100 / value.goalValue;
   }
 
 }

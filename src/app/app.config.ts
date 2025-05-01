@@ -1,11 +1,14 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, effect, provideZoneChangeDetection } from '@angular/core';
 import { PreloadAllModules, provideRouter, withPreloading } from '@angular/router';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient } from '@angular/common/http';
 import { provideState, provideStore } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
 import { userReducer } from './shared/store/user.reducer';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { activityReducer } from './shared/store/activity.reducer';
+import { ActivityEffect } from './shared/store/activity.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,6 +20,8 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideStore(),
     provideState({ name: 'user', reducer: userReducer }),
+    provideState({ name: 'activity', reducer: activityReducer }),
+    provideEffects([ActivityEffect]),
     provideStoreDevtools({
       maxAge: 25, // Retains last 25 states
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
