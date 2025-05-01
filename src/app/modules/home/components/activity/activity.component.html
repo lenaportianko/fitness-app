@@ -4,21 +4,21 @@
 
         <div class="activity-info-details">
             <div class="activity-details">
-                <div class="activity-block" *ngFor="let activityInfo of activityInfoes">
-                    <p [ngClass]="['activity-name', getActivityClass(activityInfo.activityType)]">
-                        {{activityInfo.activityType}}
+                <div class="activity-block" *ngFor="let activity of activityData">
+                    <p [ngClass]="['activity-name', getActivityClass(activity.activityType)]">
+                        {{activityTypes[activity.activityType]}}
                     </p>
-                    <p class="activity-actual">{{activityInfo.activityActual}} {{activityInfo.unitOfMeasure}}</p>
-                    <p class="activity-goal">{{activityInfo.activityGoal}} {{activityInfo.unitOfMeasure}}</p>
+                    <p class="activity-actual">{{activity.actualValue}} {{activity.unitOfMeasure}}</p>
+                    <p class="activity-goal">{{activity.goalValue}} {{activity.unitOfMeasure}}</p>
                 </div>
             </div>
 
             <div class="activity-diagram">
                 <mat-progress-spinner
-                    *ngFor="let activityInfo of activityInfoes; index as i"
-                    [ngClass]="['progress-spinner', getActivityClass(activityInfo.activityType)]"
+                    *ngFor="let activity of activityData; index as i"
+                    [ngClass]="['progress-spinner', getActivityClass(activity.activityType)]"
                     [mode]="'determinate'"
-                    [value]="getProgressSpinnerValue(activityInfo)"
+                    [value]="getProgressSpinnerValue(activity)"
                     [strokeWidth]="10"
                     [diameter]="30*(i+1)"
                 ></mat-progress-spinner>
