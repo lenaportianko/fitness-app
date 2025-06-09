@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 import { UserService } from './user.service';
 import { ActivityService } from '../../modules/home/services/activity.service';
+import { NutritionService } from '../../modules/home/services/nutrition.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ export class AuthService {
 
   constructor(
     private userService: UserService,
-    private activityService: ActivityService
+    private activityService: ActivityService,
+    private nutritionService: NutritionService
   ) { }
 
   public getAuthValue(): string | null {
@@ -49,5 +51,6 @@ export class AuthService {
     this.removeAuthValue();
     this.userService.resetUser();
     this.activityService.resetActivities();
+    this.nutritionService.resetNutritions();
   }
 }

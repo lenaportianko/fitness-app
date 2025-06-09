@@ -7,6 +7,7 @@ import { getRandomValue } from '../../../shared/utils/helper';
 import { drinkMenu } from '../../../core/constants/drink-menu';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { reset } from '../../../shared/store/nutrition.action';
 
 @Injectable({
   providedIn: 'root'
@@ -52,5 +53,9 @@ export class NutritionService {
     });
 
     return nutritions;
+  }
+
+  public resetNutritions(): void {
+    this.store.dispatch(reset());
   }
 }
