@@ -6,6 +6,7 @@ import { NutritionComponent } from './components/nutrition/nutrition.component';
 import { CommonModule } from '@angular/common';
 import { MenuItem } from '../../core/models/menu-item.enum';
 import * as ActivityAction from '../../shared/store/activity.action';
+import * as NutritionAction from '../../shared/store/nutrition.action';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -31,6 +32,7 @@ export class HomeComponent implements OnInit {
 
   public ngOnInit(): void {
     this.store.dispatch(ActivityAction.load());
+    this.store.dispatch(NutritionAction.load());
   }
 
   public updateContent($event: string): void {
