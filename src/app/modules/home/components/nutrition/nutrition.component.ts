@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NutritionService } from '../../services/nutrition.service';
+import { NutritionInfo } from '../../../../core/models/nutrition-info.type';
 
 @Component({
   selector: 'app-nutrition',
@@ -9,6 +11,16 @@ import { Component } from '@angular/core';
     CommonModule
   ]
 })
-export class NutritionComponent {
+export class NutritionComponent implements OnInit {
 
+  public nutritions: NutritionInfo[] = [];
+
+  public constructor (private nutritionService: NutritionService) {}
+
+  public ngOnInit(): void {
+    this.nutritionService.getNutritions().subscribe((nutrition: NutritionInfo[]) => {
+      this.nutritions = nutrition;
+    });
+  }
+ 
 }

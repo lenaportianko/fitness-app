@@ -5,13 +5,19 @@ import { CourceType } from '../../../core/models/cource-type.enum';
 import { generalMenu, snackMenu } from '../../../core/constants/food-menu';
 import { getRandomValue } from '../../../shared/utils/helper';
 import { drinkMenu } from '../../../core/constants/drink-menu';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NutritionService {
 
-  constructor() { }
+  public constructor(private store: Store<{ nutrition: NutritionInfo[] }>) { }
+
+  public getNutritions(): Observable<NutritionInfo[]> {
+    return this.store.select('nutrition');
+  }
 
   public generatetNutrition(): NutritionInfo[] {
     const nutritions: NutritionInfo[] = [];
