@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { ActivityInfo } from "../../../core/models/activity-info.model";
+import { ActivityInfo } from "../../../core/models/activity-info.type";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { reset } from "../../../shared/store/activity.action";

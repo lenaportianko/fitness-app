@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Chart, ChartConfiguration, ChartDataset, registerables } from 'chart.js';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ActivityService } from '../../services/activity.service';
-import { ActivityInfo } from '../../../../core/models/activity-info.model';
+import { ActivityInfo } from '../../../../core/models/activity-info.type';
 import { ActivityType } from '../../../../core/models/activity-type.enum';
 
 @Component({

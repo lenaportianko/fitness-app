@@ -1,4 +1,4 @@
-import { ActivityInfo } from "../models/activity-info.model";
+import { ActivityInfo } from "../models/activity-info.type";
 import { ActivityType } from "../models/activity-type.enum";
 
 export const activityInfo: ActivityInfo[] = [
