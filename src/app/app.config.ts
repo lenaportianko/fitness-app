@@ -9,6 +9,8 @@ import { userReducer } from './shared/store/user.reducer';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { activityReducer } from './shared/store/activity.reducer';
 import { ActivityEffect } from './shared/store/activity.effect';
+import { nutritionReducer } from './shared/store/nutrition.reducer';
+import { NutritionEffect } from './shared/store/nutrition.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,7 +23,8 @@ export const appConfig: ApplicationConfig = {
     provideStore(),
     provideState({ name: 'user', reducer: userReducer }),
     provideState({ name: 'activity', reducer: activityReducer }),
-    provideEffects([ActivityEffect]),
+    provideState({ name: 'nutrition', reducer: nutritionReducer }),
+    provideEffects([ActivityEffect, NutritionEffect]),
     provideStoreDevtools({
       maxAge: 25, // Retains last 25 states
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
