@@ -6,6 +6,6 @@ export const initialState: NutritionInfo[] = [];
 
 export const nutritionReducer = createReducer(
     initialState,
-    on(set, (_, { data }) => ({ ...data })),
+    on(set, (_, { data }) => (data)),
     on(reset, () => ([]))
 );
