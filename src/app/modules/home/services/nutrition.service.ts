@@ -28,7 +28,7 @@ export class NutritionService {
         nutrition.courceType === CourceType.Snack2 ||
         nutrition.courceType === CourceType.Dinner
       ) {
-         nutritions.push(nutrition);
+        nutritions.push(nutrition);
         return;
       }
 
