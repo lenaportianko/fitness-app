@@ -3,7 +3,7 @@ import { MealInfo } from "./meal-info.type";
 
 export type NutritionInfo = {
     courceType: CourceType;
-    recommendedСalorie: number;
+    recommendedCalorie: number;
     actualCalorie: number;
     dishes: MealInfo[];
 }
